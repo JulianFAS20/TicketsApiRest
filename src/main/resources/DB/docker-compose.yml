@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: mi_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: julianfas20
+      POSTGRES_PASSWORD: Master1973
+      POSTGRES_DB: tickets_db
+    ports:
+      - 5499:5432
+    expose:
+      - 5499
+    volumes:
+      - ./Script_DB.sql:/docker-entrypoint-initdb.d/Script_DB.sql
+      - pgdata:/var/lib/postgresql/data
+    
+networks:
+  default:
+    name: postgre-service_default
+    
+volumes:
+  pgdata:
+   driver: local
